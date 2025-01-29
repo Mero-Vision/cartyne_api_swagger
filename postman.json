@@ -119,9 +119,9 @@
 									]
 								},
 								"url": {
-									"raw": "{{url}}/api/admin/login",
+									"raw": "{{live_url}}/api/admin/login",
 									"host": [
-										"{{url}}"
+										"{{live_url}}"
 									],
 									"path": [
 										"api",
@@ -169,7 +169,7 @@
 										{
 											"key": "category_image",
 											"type": "file",
-											"src": "/C:/Users/Hanci/Downloads/WhatsApp Image 2025-01-12 at 11.56.01_25300c7e.jpg"
+											"src": "/C:/Users/Hanci/Downloads/iphone_x-xs-11_pro___1_4x.png"
 										}
 									]
 								},
@@ -319,6 +319,348 @@
 										"admin",
 										"category",
 										"{id}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Brand",
+					"item": [
+						{
+							"name": "store brand data",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "Nike",
+											"type": "text"
+										},
+										{
+											"key": "brand_image",
+											"type": "file",
+											"src": "/C:/Users/Hanci/Downloads/iphone_x-xs-11_pro___1_4x.png"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/brand",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"brand"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show all brand list",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/admin/brand?pagination_limit=8&search_keyword",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"brand"
+									],
+									"query": [
+										{
+											"key": "pagination_limit",
+											"value": "8"
+										},
+										{
+											"key": "search_keyword",
+											"value": null
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete brand",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/admin/brand/{id}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"brand",
+										"{id}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update brand data",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "brand_image",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "_method",
+											"value": "PUT",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/brand/{id}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"brand",
+										"{id}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Product",
+					"item": [
+						{
+							"name": "store product",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "category_id",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "brand_id",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "name",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "description",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "selling_price",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "cross_price",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "unit_price",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "stock_quantity",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "sku",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "allow_negative_stock",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "has_varient",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "status",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "varients[0][size]",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "varients[0][color]",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "varients[0][varient_selling_price]",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "varients[0][varient_cross_price]",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "varients[0][varient_unit_price]",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "varients[0][varient_stock_quantity]",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "varients[0][varient_sku]",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "varients[0][images][0][url]",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "product_image[]",
+											"value": "",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/product",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"product"
 									]
 								}
 							},
