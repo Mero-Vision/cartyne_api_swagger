@@ -28,6 +28,8 @@ tags:
   - name: Admin > Site Settings
   - name: Admin > Authentication
   - name: Admin > Category
+  - name: Admin > Brand
+  - name: Admin > Product
 paths:
   /api/admin/site-settings:
     post:
@@ -204,6 +206,186 @@ paths:
           schema:
             type: string
           required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/brand:
+    post:
+      tags:
+        - Admin > Brand
+      summary: store brand data
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Nike
+                brand_image:
+                  type: string
+                  format: binary
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > Brand
+      summary: show all brand list
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '8'
+        - name: search_keyword
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/brand/{id}:
+    delete:
+      tags:
+        - Admin > Brand
+      summary: delete brand
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - Admin > Brand
+      summary: update brand data
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                brand_image:
+                  type: string
+                _method:
+                  type: string
+                  example: PUT
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/product:
+    post:
+      tags:
+        - Admin > Product
+      summary: store product
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                category_id:
+                  type: string
+                brand_id:
+                  type: string
+                name:
+                  type: string
+                description:
+                  type: string
+                selling_price:
+                  type: string
+                cross_price:
+                  type: string
+                unit_price:
+                  type: string
+                stock_quantity:
+                  type: string
+                sku:
+                  type: string
+                allow_negative_stock:
+                  type: string
+                has_varient:
+                  type: string
+                status:
+                  type: string
+                varients[0][size]:
+                  type: string
+                varients[0][color]:
+                  type: string
+                varients[0][varient_selling_price]:
+                  type: string
+                varients[0][varient_cross_price]:
+                  type: string
+                varients[0][varient_unit_price]:
+                  type: string
+                varients[0][varient_stock_quantity]:
+                  type: string
+                varients[0][varient_sku]:
+                  type: string
+                varients[0][images][0][url]:
+                  type: string
+                product_image[]:
+                  type: string
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
       responses:
         '200':
           description: Successful response
