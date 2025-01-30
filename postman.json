@@ -56,6 +56,21 @@
 											"key": "contact_no",
 											"value": "9825915122",
 											"type": "text"
+										},
+										{
+											"key": "home_page_banner_1",
+											"type": "file",
+											"src": []
+										},
+										{
+											"key": "home_page_banner_2",
+											"type": "file",
+											"src": []
+										},
+										{
+											"key": "home_page_banner_3",
+											"type": "file",
+											"src": []
 										}
 									]
 								},
@@ -119,9 +134,9 @@
 									]
 								},
 								"url": {
-									"raw": "{{live_url}}/api/admin/login",
+									"raw": "{{url}}/api/admin/login",
 									"host": [
-										"{{live_url}}"
+										"{{url}}"
 									],
 									"path": [
 										"api",
@@ -661,6 +676,96 @@
 										"api",
 										"admin",
 										"product"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "User",
+					"item": [
+						{
+							"name": "show authenticated user data",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/admin/user/1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"user",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Customer",
+			"item": [
+				{
+					"name": "Authentication",
+					"item": [
+						{
+							"name": "login",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "email",
+											"value": "info@cartyne.com",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "Password",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/login",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"login"
 									]
 								}
 							},
