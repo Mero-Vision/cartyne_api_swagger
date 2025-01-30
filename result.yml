@@ -30,6 +30,9 @@ tags:
   - name: Admin > Category
   - name: Admin > Brand
   - name: Admin > Product
+  - name: Admin > User
+  - name: Customer
+  - name: Customer > Authentication
 paths:
   /api/admin/site-settings:
     post:
@@ -54,6 +57,15 @@ paths:
                 contact_no:
                   type: integer
                   example: '9825915122'
+                home_page_banner_1:
+                  type: string
+                  format: binary
+                home_page_banner_2:
+                  type: string
+                  format: binary
+                home_page_banner_3:
+                  type: string
+                  format: binary
       security:
         - bearerAuth: []
       parameters:
@@ -380,6 +392,52 @@ paths:
                   type: string
       security:
         - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/user/1:
+    get:
+      tags:
+        - Admin > User
+      summary: show authenticated user data
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/login:
+    post:
+      tags:
+        - Customer > Authentication
+      summary: login
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: info@cartyne.com
+                password:
+                  type: string
+                  example: Password
       parameters:
         - name: Accept
           in: header
