@@ -184,7 +184,7 @@
 										{
 											"key": "category_image",
 											"type": "file",
-											"src": "/C:/Users/Hanci/Downloads/iphone_x-xs-11_pro___1_4x.png"
+											"src": "/C:/Users/Hanci/Downloads/how-ot-make-picture-black-and-white-after.jpg"
 										}
 									]
 								},
@@ -376,7 +376,7 @@
 										{
 											"key": "brand_image",
 											"type": "file",
-											"src": "/C:/Users/Hanci/Downloads/iphone_x-xs-11_pro___1_4x.png"
+											"src": "/C:/Users/Hanci/Downloads/how-ot-make-picture-black-and-white-after.jpg"
 										}
 									]
 								},
@@ -562,111 +562,146 @@
 									"formdata": [
 										{
 											"key": "category_id",
-											"value": "",
+											"value": "1",
 											"type": "text"
 										},
 										{
 											"key": "brand_id",
-											"value": "",
+											"value": "1",
 											"type": "text"
 										},
 										{
 											"key": "name",
-											"value": "",
+											"value": "Mobile",
 											"type": "text"
 										},
 										{
 											"key": "description",
-											"value": "",
+											"value": "dfdgfg",
 											"type": "text"
 										},
 										{
 											"key": "selling_price",
-											"value": "",
+											"value": "200",
 											"type": "text"
 										},
 										{
 											"key": "cross_price",
-											"value": "",
+											"value": "300",
 											"type": "text"
 										},
 										{
 											"key": "unit_price",
-											"value": "",
+											"value": "100",
 											"type": "text"
 										},
 										{
 											"key": "stock_quantity",
-											"value": "",
+											"value": "500",
 											"type": "text"
 										},
 										{
 											"key": "sku",
-											"value": "",
+											"value": "DGFT56",
 											"type": "text"
 										},
 										{
 											"key": "allow_negative_stock",
-											"value": "",
+											"value": "1",
 											"type": "text"
 										},
 										{
 											"key": "has_varient",
-											"value": "",
+											"value": "1",
 											"type": "text"
 										},
 										{
 											"key": "status",
-											"value": "",
+											"value": "active",
 											"type": "text"
 										},
 										{
 											"key": "varients[0][size]",
-											"value": "",
+											"value": "XXL",
 											"type": "text"
 										},
 										{
 											"key": "varients[0][color]",
-											"value": "",
+											"value": "RED",
 											"type": "text"
 										},
 										{
 											"key": "varients[0][varient_selling_price]",
-											"value": "",
+											"value": "200",
 											"type": "text"
 										},
 										{
 											"key": "varients[0][varient_cross_price]",
-											"value": "",
+											"value": "300",
 											"type": "text"
 										},
 										{
 											"key": "varients[0][varient_unit_price]",
-											"value": "",
+											"value": "100",
 											"type": "text"
 										},
 										{
 											"key": "varients[0][varient_stock_quantity]",
-											"value": "",
+											"value": "500",
 											"type": "text"
 										},
 										{
 											"key": "varients[0][varient_sku]",
-											"value": "",
+											"value": "GFG67",
 											"type": "text"
 										},
 										{
 											"key": "varients[0][images][0][url]",
-											"value": "",
-											"type": "text"
+											"type": "file",
+											"src": "/C:/Users/Hanci/Downloads/how-ot-make-picture-black-and-white-after.jpg"
 										},
 										{
 											"key": "product_image[]",
-											"value": "",
-											"type": "text"
+											"type": "file",
+											"src": "/C:/Users/Hanci/Downloads/how-ot-make-picture-black-and-white-after.jpg"
 										}
 									]
 								},
+								"url": {
+									"raw": "{{url}}/api/admin/product",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"product"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show all products",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
 								"url": {
 									"raw": "{{url}}/api/admin/product",
 									"host": [
@@ -852,6 +887,51 @@
 										"api",
 										"admin",
 										"delivery-charges"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update all district delivery charges",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"districts\": [\r\n        {\r\n            \"id\": 1,\r\n            \"cost_0_1kg\": 100,\r\n            \"cost_1_2kg\": 150,\r\n            \"cost_2_3kg\": 200,\r\n            \"cost_3_5kg\": 250,\r\n            \"cost_5_10kg\": 300,\r\n            \"cost_above_10kg\": 400\r\n        },\r\n        {\r\n            \"id\": 2,\r\n            \"cost_0_1kg\": 120,\r\n            \"cost_1_2kg\": 160,\r\n            \"cost_2_3kg\": 210,\r\n            \"cost_3_5kg\": 260,\r\n            \"cost_5_10kg\": 310,\r\n            \"cost_above_10kg\": 410\r\n        },\r\n        {\r\n            \"id\": 3,\r\n            \"cost_0_1kg\": 110,\r\n            \"cost_1_2kg\": 170,\r\n            \"cost_2_3kg\": 220,\r\n            \"cost_3_5kg\": 270,\r\n            \"cost_5_10kg\": 320,\r\n            \"cost_above_10kg\": 420\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/delivery-charges/bulk-update",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"delivery-charges",
+										"bulk-update"
 									]
 								}
 							},
