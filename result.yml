@@ -31,8 +31,14 @@ tags:
   - name: Admin > Brand
   - name: Admin > Product
   - name: Admin > User
+  - name: Admin > Dashboard
+  - name: Admin > Delivery Charges
   - name: Customer
   - name: Customer > Authentication
+  - name: Customer > Customer
+  - name: Customer > Category
+  - name: Customer > Site Settings
+  - name: Customer > Brand
 paths:
   /api/admin/site-settings:
     post:
@@ -421,6 +427,75 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /api/admin/change-password:
+    post:
+      tags:
+        - Admin > User
+      summary: change password
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                current_password:
+                  type: string
+                  example: Password
+                password:
+                  type: string
+                  example: password
+                password_confirmation:
+                  type: string
+                  example: password
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/dashboard:
+    get:
+      tags:
+        - Admin > Dashboard
+      summary: dashboard get api
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/delivery-charges:
+    get:
+      tags:
+        - Admin > Delivery Charges
+      summary: show all delivery charges
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /api/login:
     post:
       tags:
@@ -434,10 +509,89 @@ paths:
               properties:
                 email:
                   type: string
-                  example: info@cartyne.com
+                  example: hanciewanemphago@gmail.com
                 password:
                   type: string
                   example: Password
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/signup:
+    post:
+      tags:
+        - Customer > Customer
+      summary: create customer account
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Hancie Phago
+                email:
+                  type: string
+                  example: hanciewanemphago@gmail.com
+                password:
+                  type: string
+                  example: Password
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/category:
+    get:
+      tags:
+        - Customer > Category
+      summary: show all category
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/site-settings:
+    get:
+      tags:
+        - Customer > Site Settings
+      summary: show all site settings
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/brand:
+    get:
+      tags:
+        - Customer > Brand
+      summary: show all brand list
       parameters:
         - name: Accept
           in: header
