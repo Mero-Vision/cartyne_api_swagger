@@ -33,6 +33,7 @@ tags:
   - name: Admin > User
   - name: Admin > Dashboard
   - name: Admin > Delivery Charges
+  - name: Admin > Customer
   - name: Customer
   - name: Customer > Authentication
   - name: Customer > Customer
@@ -77,6 +78,30 @@ paths:
                 home_page_banner_3:
                   type: string
                   format: binary
+                privacy_policy:
+                  type: string
+                terms_conditions:
+                  type: string
+                facebook_link:
+                  type: string
+                instagram_link:
+                  type: string
+                tiktok_link:
+                  type: string
+                whatsapp_number:
+                  type: string
+                footer_background_color:
+                  type: string
+                footer_text_color:
+                  type: string
+                primary_nav_background_color:
+                  type: string
+                primary_nav_text_color:
+                  type: string
+                secondary_nav_background_color:
+                  type: string
+                secondary_nav_text_color:
+                  type: string
       security:
         - bearerAuth: []
       parameters:
@@ -578,14 +603,14 @@ paths:
                     cost_0_1kg: 100
                     cost_1_2kg: 150
                     cost_2_3kg: 200
-                    cost_3_5kg: 250
+                    cost_3_5kg: 0
                     cost_5_10kg: 300
                     cost_above_10kg: 400
                   - id: 2
                     cost_0_1kg: 120
                     cost_1_2kg: 160
                     cost_2_3kg: 210
-                    cost_3_5kg: 260
+                    cost_3_5kg: 0
                     cost_5_10kg: 310
                     cost_above_10kg: 410
                   - id: 3
@@ -603,6 +628,56 @@ paths:
           schema:
             type: string
           example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/customers:
+    get:
+      tags:
+        - Admin > Customer
+      summary: show all customer
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '5'
+        - name: search_keyword
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/customer-orders/{customer_id}:
+    get:
+      tags:
+        - Admin > Customer
+      summary: customer orders
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: customer_id
+          in: path
+          schema:
+            type: string
+          required: true
       responses:
         '200':
           description: Successful response
@@ -667,7 +742,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /api/customer/{id}:
+  /api/customer/{customer_id}:
     get:
       tags:
         - Customer > Customer
@@ -680,7 +755,42 @@ paths:
           schema:
             type: string
           example: application/json
-        - name: id
+        - name: customer_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/customer/update-profile-image/{customer_id}:
+    post:
+      tags:
+        - Customer > Customer
+      summary: change customer profile image
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                profile_image:
+                  type: string
+                  format: binary
+                _method:
+                  type: string
+                  example: PUT
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: customer_id
           in: path
           schema:
             type: string
@@ -701,6 +811,27 @@ paths:
           schema:
             type: string
           example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/category/{slug}:
+    get:
+      tags:
+        - Customer > Category
+      summary: show single category with products data
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: slug
+          in: path
+          schema:
+            type: string
+          required: true
       responses:
         '200':
           description: Successful response
@@ -733,6 +864,29 @@ paths:
           schema:
             type: string
           example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/brand/{slug}:
+    get:
+      tags:
+        - Customer > Brand
+      summary: show brand products
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: slug
+          in: path
+          schema:
+            type: string
+          required: true
       responses:
         '200':
           description: Successful response
@@ -826,13 +980,13 @@ paths:
               properties:
                 product_id:
                   type: integer
-                  example: '1'
+                  example: '2'
                 product_varient_id:
                   type: integer
-                  example: '1'
+                  example: '2'
                 quantity:
                   type: integer
-                  example: '2'
+                  example: '5'
                 price:
                   type: integer
                   example: '300'
@@ -893,7 +1047,7 @@ paths:
     get:
       tags:
         - Customer > Product
-      summary: show all products
+      summary: show 6 products
       parameters:
         - name: Accept
           in: header
@@ -910,12 +1064,35 @@ paths:
       tags:
         - Customer > Product
       summary: Show single product details
+      security:
+        - bearerAuth: []
       parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
         - name: slug
           in: path
           schema:
             type: string
           required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/all-products:
+    get:
+      tags:
+        - Customer > Product
+      summary: show all products
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
       responses:
         '200':
           description: Successful response
