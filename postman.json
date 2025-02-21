@@ -71,6 +71,66 @@
 											"key": "home_page_banner_3",
 											"type": "file",
 											"src": []
+										},
+										{
+											"key": "privacy_policy",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "terms_conditions",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "facebook_link",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "instagram_link",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "tiktok_link",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "whatsapp_number",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "footer_background_color",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "footer_text_color",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "primary_nav_background_color",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "primary_nav_text_color",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "secondary_nav_background_color",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "secondary_nav_text_color",
+											"value": "",
+											"type": "text"
 										}
 									]
 								},
@@ -951,7 +1011,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"districts\": [\r\n        {\r\n            \"id\": 1,\r\n            \"cost_0_1kg\": 100,\r\n            \"cost_1_2kg\": 150,\r\n            \"cost_2_3kg\": 200,\r\n            \"cost_3_5kg\": 250,\r\n            \"cost_5_10kg\": 300,\r\n            \"cost_above_10kg\": 400\r\n        },\r\n        {\r\n            \"id\": 2,\r\n            \"cost_0_1kg\": 120,\r\n            \"cost_1_2kg\": 160,\r\n            \"cost_2_3kg\": 210,\r\n            \"cost_3_5kg\": 260,\r\n            \"cost_5_10kg\": 310,\r\n            \"cost_above_10kg\": 410\r\n        },\r\n        {\r\n            \"id\": 3,\r\n            \"cost_0_1kg\": 110,\r\n            \"cost_1_2kg\": 170,\r\n            \"cost_2_3kg\": 220,\r\n            \"cost_3_5kg\": 270,\r\n            \"cost_5_10kg\": 320,\r\n            \"cost_above_10kg\": 420\r\n        }\r\n    ]\r\n}",
+									"raw": "{\r\n    \"districts\": [\r\n        {\r\n            \"id\": 1,\r\n            \"cost_0_1kg\": 100,\r\n            \"cost_1_2kg\": 150,\r\n            \"cost_2_3kg\": 200,\r\n            \"cost_3_5kg\": 0,\r\n            \"cost_5_10kg\": 300,\r\n            \"cost_above_10kg\": 400\r\n        },\r\n        {\r\n            \"id\": 2,\r\n            \"cost_0_1kg\": 120,\r\n            \"cost_1_2kg\": 160,\r\n            \"cost_2_3kg\": 210,\r\n            \"cost_3_5kg\": 0,\r\n            \"cost_5_10kg\": 310,\r\n            \"cost_above_10kg\": 410\r\n        },\r\n        {\r\n            \"id\": 3,\r\n            \"cost_0_1kg\": 110,\r\n            \"cost_1_2kg\": 170,\r\n            \"cost_2_3kg\": 220,\r\n            \"cost_3_5kg\": 270,\r\n            \"cost_5_10kg\": 320,\r\n            \"cost_above_10kg\": 420\r\n        }\r\n    ]\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -968,6 +1028,92 @@
 										"admin",
 										"delivery-charges",
 										"bulk-update"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Customer",
+					"item": [
+						{
+							"name": "show all customer",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/admin/customers?pagination_limit=5&search_keyword",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"customers"
+									],
+									"query": [
+										{
+											"key": "pagination_limit",
+											"value": "5"
+										},
+										{
+											"key": "search_keyword",
+											"value": null
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "customer orders",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/admin/customer-orders/{customer_id}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"customer-orders",
+										"{customer_id}"
 									]
 								}
 							},
@@ -1093,14 +1239,65 @@
 									}
 								],
 								"url": {
-									"raw": "{{url}}/api/customer/{id}",
+									"raw": "{{url}}/api/customer/{customer_id}",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
 										"api",
 										"customer",
-										"{id}"
+										"{customer_id}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "change customer profile image",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "profile_image",
+											"type": "file",
+											"src": "/C:/Users/Hanci/Downloads/Sukrat restaurant and lodge.png"
+										},
+										{
+											"key": "_method",
+											"value": "PUT",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/customer/update-profile-image/{customer_id}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"customer",
+										"update-profile-image",
+										"{customer_id}"
 									]
 								}
 							},
@@ -1130,6 +1327,31 @@
 									"path": [
 										"api",
 										"category"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show single category with products data",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/category/{slug}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"category",
+										"{slug}"
 									]
 								}
 							},
@@ -1188,6 +1410,41 @@
 									"path": [
 										"api",
 										"brand"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show brand products",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/brand/{slug}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"brand",
+										"{slug}"
 									]
 								}
 							},
@@ -1353,17 +1610,17 @@
 									"formdata": [
 										{
 											"key": "product_id",
-											"value": "1",
+											"value": "2",
 											"type": "text"
 										},
 										{
 											"key": "product_varient_id",
-											"value": "1",
+											"value": "2",
 											"type": "text"
 										},
 										{
 											"key": "quantity",
-											"value": "2",
+											"value": "5",
 											"type": "text"
 										},
 										{
@@ -1461,7 +1718,7 @@
 					"name": "Product",
 					"item": [
 						{
-							"name": "show all products",
+							"name": "show 6 products",
 							"request": {
 								"method": "GET",
 								"header": [
@@ -1487,8 +1744,24 @@
 						{
 							"name": "Show single product details",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
 								"method": "GET",
-								"header": [],
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
 								"url": {
 									"raw": "{{url}}/api/products/{slug}",
 									"host": [
@@ -1498,6 +1771,30 @@
 										"api",
 										"products",
 										"{slug}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show all products",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/all-products",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"all-products"
 									]
 								}
 							},
