@@ -34,6 +34,7 @@ tags:
   - name: Admin > Dashboard
   - name: Admin > Delivery Charges
   - name: Admin > Customer
+  - name: Admin > Order
   - name: Customer
   - name: Customer > Authentication
   - name: Customer > Customer
@@ -551,6 +552,41 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /api/admin/update-profile-image/{user_id}:
+    post:
+      tags:
+        - Admin > User
+      summary: change customer profile image
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                profile_image:
+                  type: string
+                  format: binary
+                _method:
+                  type: string
+                  example: PUT
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: user_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /api/admin/dashboard:
     get:
       tags:
@@ -683,6 +719,47 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /api/admin/orders:
+    get:
+      tags:
+        - Admin > Order
+      summary: show all orders
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/orders/update-status/{order_id}:
+    get:
+      tags:
+        - Admin > Order
+      summary: update order status
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: order_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /api/login:
     post:
       tags:
@@ -795,6 +872,74 @@ paths:
           schema:
             type: string
           required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/customer/{customer_name}:
+    post:
+      tags:
+        - Customer > Customer
+      summary: update customer name
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Hancie Phago
+                _method:
+                  type: string
+                  example: PUT
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: customer_name
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/customer/change-password:
+    post:
+      tags:
+        - Customer > Customer
+      summary: change password
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                current_password:
+                  type: string
+                  example: Password
+                password:
+                  type: string
+                  example: Password2
+                password_confirmation:
+                  type: string
+                  example: Password2
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
       responses:
         '200':
           description: Successful response
@@ -1034,6 +1179,41 @@ paths:
             type: string
           example: application/json
         - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/carts/quantity-update/{cart_id}:
+    post:
+      tags:
+        - Customer > Cart
+      summary: update cart quantity
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                quantity:
+                  type: integer
+                  example: '5'
+                _method:
+                  type: string
+                  example: PUT
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: cart_id
           in: path
           schema:
             type: string
