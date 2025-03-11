@@ -37,6 +37,7 @@ tags:
   - name: Admin > Order
   - name: Admin > FAQ
   - name: Admin > Contact Us
+  - name: Admin > NewsLetter
   - name: Customer
   - name: Customer > Authentication
   - name: Customer > Customer
@@ -50,6 +51,7 @@ tags:
   - name: Customer > Shipping Details
   - name: Customer > Faq
   - name: Customer > Contact Us
+  - name: Customer > NewsLetter
 paths:
   /api/admin/site-settings:
     post:
@@ -943,6 +945,33 @@ paths:
           schema:
             type: string
           required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/newsletters:
+    get:
+      tags:
+        - Admin > NewsLetter
+      summary: show all newsletter
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '8'
+        - name: search_keyword
+          in: query
+          schema:
+            type: string
       responses:
         '200':
           description: Successful response
@@ -1904,6 +1933,31 @@ paths:
                 message:
                   type: string
                   example: Order Delay
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/newsletter:
+    post:
+      tags:
+        - Customer > NewsLetter
+      summary: store newsletter data
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: hancie@gmail.com
       parameters:
         - name: Accept
           in: header
