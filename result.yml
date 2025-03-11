@@ -36,6 +36,7 @@ tags:
   - name: Admin > Customer
   - name: Admin > Order
   - name: Admin > FAQ
+  - name: Admin > Contact Us
   - name: Customer
   - name: Customer > Authentication
   - name: Customer > Customer
@@ -48,6 +49,7 @@ tags:
   - name: Customer > Order
   - name: Customer > Shipping Details
   - name: Customer > Faq
+  - name: Customer > Contact Us
 paths:
   /api/admin/site-settings:
     post:
@@ -104,6 +106,10 @@ paths:
                 secondary_nav_background_color:
                   type: string
                 secondary_nav_text_color:
+                  type: string
+                email:
+                  type: string
+                about_us:
                   type: string
       security:
         - bearerAuth: []
@@ -396,6 +402,9 @@ paths:
                 name:
                   type: string
                   example: Mobile
+                short_description:
+                  type: string
+                  example: hello
                 description:
                   type: string
                   example: dfdgfg
@@ -871,6 +880,56 @@ paths:
                 _method:
                   type: string
                   example: PUT
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/contact-us:
+    get:
+      tags:
+        - Admin > Contact Us
+      summary: show all contact us
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '8'
+        - name: search_keyword
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/contact-us/{id}:
+    delete:
+      tags:
+        - Admin > Contact Us
+      summary: delete contact us
       security:
         - bearerAuth: []
       parameters:
@@ -1808,6 +1867,43 @@ paths:
       tags:
         - Customer > Faq
       summary: show all faq
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/contact-us:
+    post:
+      tags:
+        - Customer > Contact Us
+      summary: store contact us
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Harry
+                mobile_no:
+                  type: integer
+                  example: '973444333445'
+                email:
+                  type: string
+                  example: harry@gmail.com
+                subject:
+                  type: string
+                  example: Order Inquiry
+                message:
+                  type: string
+                  example: Order Delay
       parameters:
         - name: Accept
           in: header

@@ -131,6 +131,16 @@
 											"key": "secondary_nav_text_color",
 											"value": "",
 											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "",
+											"type": "text"
+										},
+										{
+											"key": "about_us",
+											"value": "",
+											"type": "text"
 										}
 									]
 								},
@@ -633,6 +643,11 @@
 										{
 											"key": "name",
 											"value": "Mobile",
+											"type": "text"
+										},
+										{
+											"key": "short_description",
+											"value": "hello",
 											"type": "text"
 										},
 										{
@@ -1448,6 +1463,92 @@
 										"api",
 										"admin",
 										"faqs",
+										"{id}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Contact Us",
+					"item": [
+						{
+							"name": "show all contact us",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/admin/contact-us?pagination_limit=8&search_keyword",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"contact-us"
+									],
+									"query": [
+										{
+											"key": "pagination_limit",
+											"value": "8"
+										},
+										{
+											"key": "search_keyword",
+											"value": null
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete contact us",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/admin/contact-us/{id}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"contact-us",
 										"{id}"
 									]
 								}
@@ -2770,6 +2871,65 @@
 									"path": [
 										"api",
 										"faqs"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Contact Us",
+					"item": [
+						{
+							"name": "store contact us",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "Harry",
+											"type": "text"
+										},
+										{
+											"key": "mobile_no",
+											"value": "973444333445",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "harry@gmail.com",
+											"type": "text"
+										},
+										{
+											"key": "subject",
+											"value": "Order Inquiry",
+											"type": "text"
+										},
+										{
+											"key": "message",
+											"value": "Order Delay",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/contact-us",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"contact-us"
 									]
 								}
 							},
