@@ -35,6 +35,7 @@ tags:
   - name: Admin > Delivery Charges
   - name: Admin > Customer
   - name: Admin > Order
+  - name: Admin > FAQ
   - name: Customer
   - name: Customer > Authentication
   - name: Customer > Customer
@@ -46,6 +47,7 @@ tags:
   - name: Customer > Product
   - name: Customer > Order
   - name: Customer > Shipping Details
+  - name: Customer > Faq
 paths:
   /api/admin/site-settings:
     post:
@@ -738,10 +740,22 @@ paths:
           content:
             application/json: {}
   /api/admin/orders/update-status/{order_id}:
-    get:
+    post:
       tags:
         - Admin > Order
       summary: update order status
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  example: processing, delivered, cancelled
+                _method:
+                  type: string
+                  example: PUT
       security:
         - bearerAuth: []
       parameters:
@@ -751,6 +765,121 @@ paths:
             type: string
           example: application/json
         - name: order_id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/faqs:
+    post:
+      tags:
+        - Admin > FAQ
+      summary: store faq data
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                question:
+                  type: string
+                  example: hy
+                answer:
+                  type: string
+                  example: hy
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - Admin > FAQ
+      summary: show all faq
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: pagination_limit
+          in: query
+          schema:
+            type: string
+        - name: search_keyword
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/faqs/{id}:
+    delete:
+      tags:
+        - Admin > FAQ
+      summary: delete faq
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - Admin > FAQ
+      summary: update faq
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                question:
+                  type: string
+                  example: hello
+                answer:
+                  type: string
+                  example: hello
+                _method:
+                  type: string
+                  example: PUT
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
           in: path
           schema:
             type: string
@@ -1663,6 +1792,22 @@ paths:
                   example: PUT
       security:
         - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/faqs:
+    get:
+      tags:
+        - Customer > Faq
+      summary: show all faq
       parameters:
         - name: Accept
           in: header

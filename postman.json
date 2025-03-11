@@ -1212,9 +1212,113 @@
 						},
 						{
 							"name": "update order status",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "status",
+											"value": "processing, delivered, cancelled",
+											"type": "text"
+										},
+										{
+											"key": "_method",
+											"value": "PUT",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/orders/update-status/{order_id}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"orders",
+										"update-status",
+										"{order_id}"
+									]
+								}
 							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "FAQ",
+					"item": [
+						{
+							"name": "store faq data",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "question",
+											"value": "hy",
+											"type": "text"
+										},
+										{
+											"key": "answer",
+											"value": "hy",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/faqs",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"faqs"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show all faq",
 							"request": {
 								"auth": {
 									"type": "bearer",
@@ -1234,27 +1338,117 @@
 										"type": "text"
 									}
 								],
-								"body": {
-									"mode": "formdata",
-									"formdata": [
-										{
-											"key": "status",
-											"value": "processing, delivered, cancelled",
-											"type": "text"
-										}
-									]
-								},
 								"url": {
-									"raw": "{{url}}/api/admin/orders/update-status/{order_id}",
+									"raw": "{{url}}/api/admin/faqs?pagination_limit&search_keyword",
 									"host": [
 										"{{url}}"
 									],
 									"path": [
 										"api",
 										"admin",
-										"orders",
-										"update-status",
-										"{order_id}"
+										"faqs"
+									],
+									"query": [
+										{
+											"key": "pagination_limit",
+											"value": null
+										},
+										{
+											"key": "search_keyword",
+											"value": null
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete faq",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/admin/faqs/{id}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"faqs",
+										"{id}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update faq",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "question",
+											"value": "hello",
+											"type": "text"
+										},
+										{
+											"key": "answer",
+											"value": "hello",
+											"type": "text"
+										},
+										{
+											"key": "_method",
+											"value": "PUT",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/faqs/{id}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"faqs",
+										"{id}"
 									]
 								}
 							},
@@ -2547,6 +2741,35 @@
 										"api",
 										"shipping-details",
 										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Faq",
+					"item": [
+						{
+							"name": "show all faq",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/faqs",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"faqs"
 									]
 								}
 							},
