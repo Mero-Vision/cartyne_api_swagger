@@ -38,6 +38,7 @@ tags:
   - name: Admin > FAQ
   - name: Admin > Contact Us
   - name: Admin > NewsLetter
+  - name: Admin > Payment Option
   - name: Customer
   - name: Customer > Authentication
   - name: Customer > Customer
@@ -968,6 +969,33 @@ paths:
           schema:
             type: integer
           example: '8'
+        - name: search_keyword
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/payment-options:
+    get:
+      tags:
+        - Admin > Payment Option
+      summary: get all payment option list
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: pagination_limit
+          in: query
+          schema:
+            type: integer
+          example: '10'
         - name: search_keyword
           in: query
           schema:

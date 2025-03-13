@@ -1606,6 +1606,56 @@
 							"response": []
 						}
 					]
+				},
+				{
+					"name": "Payment Option",
+					"item": [
+						{
+							"name": "get all payment option list",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/admin/payment-options?pagination_limit=10&search_keyword",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"payment-options"
+									],
+									"query": [
+										{
+											"key": "pagination_limit",
+											"value": "10"
+										},
+										{
+											"key": "search_keyword",
+											"value": null
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			]
 		},
