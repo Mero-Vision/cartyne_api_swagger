@@ -141,6 +141,11 @@
 											"key": "about_us",
 											"value": "",
 											"type": "text"
+										},
+										{
+											"key": "fav_icon",
+											"value": "",
+											"type": "text"
 										}
 									]
 								},
@@ -1654,6 +1659,129 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "update payment status",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "status",
+											"value": "active",
+											"type": "text"
+										},
+										{
+											"key": "_method",
+											"value": "PUT",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/payment-options/update-status/{id}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"payment-options",
+										"update-status",
+										"{id}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update payment option details",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "secret_key",
+											"value": "rtert",
+											"type": "text"
+										},
+										{
+											"key": "public_key",
+											"value": "terert",
+											"type": "text"
+										},
+										{
+											"key": "merchant_code",
+											"value": "tey",
+											"type": "text"
+										},
+										{
+											"key": "username",
+											"value": "eyty",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "tytry",
+											"type": "text"
+										},
+										{
+											"key": "_method",
+											"value": "PUT",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/admin/payment-options/{slug}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"admin",
+										"payment-options",
+										"{slug}"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				}
@@ -3069,6 +3197,99 @@
 									"path": [
 										"api",
 										"newsletter"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Payment Option",
+					"item": [
+						{
+							"name": "show all active payment option",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/payment-options",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"payment-options"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "FonePay",
+					"item": [
+						{
+							"name": "generate fonepay dynamic qr",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "amount",
+											"value": "200",
+											"type": "text"
+										},
+										{
+											"key": "order_id",
+											"value": "2",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/generate-fonepay-dynamic-qr",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"generate-fonepay-dynamic-qr"
 									]
 								}
 							},

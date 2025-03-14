@@ -53,6 +53,8 @@ tags:
   - name: Customer > Faq
   - name: Customer > Contact Us
   - name: Customer > NewsLetter
+  - name: Customer > Payment Option
+  - name: Customer > FonePay
 paths:
   /api/admin/site-settings:
     post:
@@ -113,6 +115,8 @@ paths:
                 email:
                   type: string
                 about_us:
+                  type: string
+                fav_icon:
                   type: string
       security:
         - bearerAuth: []
@@ -1000,6 +1004,88 @@ paths:
           in: query
           schema:
             type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/payment-options/update-status/{id}:
+    post:
+      tags:
+        - Admin > Payment Option
+      summary: update payment status
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  example: active
+                _method:
+                  type: string
+                  example: PUT
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: id
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/admin/payment-options/{slug}:
+    post:
+      tags:
+        - Admin > Payment Option
+      summary: update payment option details
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                secret_key:
+                  type: string
+                  example: rtert
+                public_key:
+                  type: string
+                  example: terert
+                merchant_code:
+                  type: string
+                  example: tey
+                username:
+                  type: string
+                  example: eyty
+                password:
+                  type: string
+                  example: tytry
+                _method:
+                  type: string
+                  example: PUT
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+        - name: slug
+          in: path
+          schema:
+            type: string
+          required: true
       responses:
         '200':
           description: Successful response
@@ -1986,6 +2072,54 @@ paths:
                 email:
                   type: string
                   example: hancie@gmail.com
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/payment-options:
+    get:
+      tags:
+        - Customer > Payment Option
+      summary: show all active payment option
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: Accept
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/generate-fonepay-dynamic-qr:
+    post:
+      tags:
+        - Customer > FonePay
+      summary: generate fonepay dynamic qr
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                amount:
+                  type: integer
+                  example: '200'
+                order_id:
+                  type: integer
+                  example: '2'
+      security:
+        - bearerAuth: []
       parameters:
         - name: Accept
           in: header
